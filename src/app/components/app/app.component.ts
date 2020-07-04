@@ -13,13 +13,19 @@ export class AppComponent {
   // }
 
   users: any[];
+  posts: any[];
+  comments: any[];
 
   constructor(private httpClient: HttpClient) {
     this.httpClient
       .get<any[]>('http://jsonplaceholder.typicode.com/users')
-      .subscribe(response => this.users = response)
-
-    ;
+      .subscribe(response => this.users = response);
+    this.httpClient
+      .get<any[]>('https://jsonplaceholder.typicode.com/posts')
+      .subscribe(res => this.posts = res);
+    this.httpClient
+      .get<any[]>('https://jsonplaceholder.typicode.com/comments')
+      .subscribe(res => this.comments = res);
   }
 
 }
